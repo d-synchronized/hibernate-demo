@@ -15,5 +15,6 @@
 
         <mapping class="uk.co.techblue.entity.Employee"/>
         <mapping class="uk.co.techblue.entity.Address"/>
+        <mapping class="uk.co.techblue.entity.ProvidentFundAccount"/>
 	</session-factory>
 </hibernate-configuration>

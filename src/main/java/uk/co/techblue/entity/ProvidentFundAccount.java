@@ -2,9 +2,13 @@ package uk.co.techblue.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,6 +21,8 @@ public class ProvidentFundAccount {
 
     /** The pf account id. */
     @Column(name = "pf_account_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long pfAccountId;
 
     /** The fund amount. */
@@ -28,8 +34,7 @@ public class ProvidentFundAccount {
     private Date accountOn;
 
     /** The employee. */
-    @OneToOne
-    @JoinColumn(name = "employee_id")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "providentFundAccount", cascade = CascadeType.ALL)
     private Employee employee;
 
     /**

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import uk.co.techblue.entity.Address;
 import uk.co.techblue.entity.Employee;
+import uk.co.techblue.entity.ProvidentFundAccount;
 import uk.co.techblue.exception.CustomException;
 import uk.co.techblue.manager.EmployeeManager;
 
@@ -30,10 +31,17 @@ public class HibernateTestApplication {
         address.setHouseName("St Andrews Street");
         address.setHouseNumber("70");
         address.setPostcode("LN57UG");
-
+        
         final Set<Address> addresses = new HashSet<Address>();
         addresses.add(address);
         employee.setAddresses(addresses);
+        
+        final ProvidentFundAccount providentFundAccount=new ProvidentFundAccount();
+        providentFundAccount.setEmployee(employee);
+        providentFundAccount.setAccountOn(new Date());
+        providentFundAccount.setFundAmount(2000D);
+        
+        employee.setProvidentFundAccount(providentFundAccount);
 
         try {
             // saves the employer details

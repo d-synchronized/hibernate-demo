@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,6 +19,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.id.uuid.CustomVersionOneStrategy;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Employee.
  */
@@ -56,6 +58,12 @@ public class Employee {
     @OneToMany(cascade = { CascadeType.ALL })
     @JoinColumn(name = "address_id")
     private Set<Address> addresses;
+    
+    /** The provident fund account. */
+    @OneToOne(cascade = { CascadeType.ALL })
+    @JoinColumn(name = "pf_account_id")
+    private ProvidentFundAccount providentFundAccount;
+
 
     /**
      * On create.
@@ -65,9 +73,6 @@ public class Employee {
         final CustomVersionOneStrategy versionOneStrategy = new CustomVersionOneStrategy();
         employeeUuid = versionOneStrategy.generateUUID(null).toString();
     }
-
-    // @OneToOne(mappedBy="employee")
-    // private ProvidentFundAccount providentFundAccount;
 
     /**
      * Gets the employee id.
@@ -176,5 +181,23 @@ public class Employee {
     public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
     }
+
+	/**
+	 * Gets the provident fund account.
+	 *
+	 * @return the provident fund account
+	 */
+	public ProvidentFundAccount getProvidentFundAccount() {
+		return providentFundAccount;
+	}
+
+	/**
+	 * Sets the provident fund account.
+	 *
+	 * @param providentFundAccount the new provident fund account
+	 */
+	public void setProvidentFundAccount(ProvidentFundAccount providentFundAccount) {
+		this.providentFundAccount = providentFundAccount;
+	}
 
 }
